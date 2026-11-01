@@ -1,0 +1,101 @@
+body {
+    background-image: url(Images/Background/Bluesky.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0px;
+}
+
+#hoop {
+    height: 15%;
+    width: 5%;
+    position: fixed;
+    top: 70%;
+    left: 80%;
+}
+#cannon {
+    height: 10%;
+    width: 5%;
+    position: fixed;
+    top: 75%;
+    left: 6%;
+    transform: rotate(-25deg);
+}
+#ground {
+    background-color: #585858;
+    width: 100%;
+    height: 15%;
+    position: fixed;
+    top: 85%;
+}
+#Initals{
+    background-color: rgb(230, 5, 73);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 3px solid black;
+    width: 25%;
+    height: 15%;
+    position: fixed;
+    left: 74%;
+    top: 1%;
+}
+#start-btn{
+    position: fixed;
+    top: 88%;
+    left: 4%;
+    padding: 10px 20px;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #4CAF50;
+    color: rgb(252, 252, 252);
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.projectile{
+    background-color: rgb(70, 70, 70);
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 1%;
+    height: 2%;
+    position: fixed;
+    left: 10%;
+    top: 70%;
+}
+.slider-container{
+    background-color: rgb(230, 169, 101);
+    height: 10%;
+    width: 16%;
+    border: 3px solid black;
+}
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    position: fixed;
+    margin-left: .5%;
+    width: 15%;
+    height: 20px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 1;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #04AA6D;
+    cursor: pointer;
+}
+.Projectile_Values{
+    background-color: rgb(230, 76, 5);
+    opacity: 70%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 3px solid black;
+    width: 28%;
+    height: 20%;
+    position: fixed;
+}

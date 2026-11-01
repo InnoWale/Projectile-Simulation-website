@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet", href = "Main.css">
+
+        <title>Projectile Simulation</title>
+    </head>
+
+    <body>
+        <canvas id="Canvas" width="1920px" height="1080px"></canvas>
+        <img src = "Images/Assest/Hoop.png", id="hoop">
+        <img src = "Images/Assest/cannon.png", id="cannon">
+
+
+        <div style="top: 2%; left: 1%;" class="Projectile_Values">
+            <p style="text-align: center; font-size: 30px; margin: 0px;"><strong>Projectile 1</strong></p>
+
+            <div style="display: flex; flex-direction:row; justify-content: space-between;">
+                <p style="margin: 10px; width: 50%;">Peak Height: <span style="color: aliceblue;" id="peak-height"> 0.00m</span></p>
+                <p style="margin: 10px; width: 50%;">Time of Flight: <span style="color: aliceblue;" id="time-of-flight"> 0.00s</span></p>
+            </div>
+
+            <div style="display: flex; flex-direction:row; justify-content: space-between;">
+                <p style="margin: 10px; width: 50%;">Current X-Velocity: <span style="color: aliceblue;" id="current-x-velocity"> 0.00m/s</span></p>
+                <p style="margin: 10px; width: 50%;">Current Y-Velocity: <span style="color: aliceblue;" id="current-y-velocity"> 0.00m/s</span></p>
+            </div>
+        </div>
+
+        <div style="top: 2%; left: 30%;" class="Projectile_Values">
+            <p style="text-align: center; font-size: 30px; margin: 0px;"><strong>Projectile 2</strong></p>
+
+            <div style="display: flex; flex-direction:row; justify-content: space-between;">
+                <p style="margin: 10px; width: 50%;">Peak Height: <span style="color: aliceblue;" id="peak-height1"> 0.00m</span></p>
+                <p style="margin: 10px; width: 50%;">Time of Flight: <span style="color: aliceblue;" id="time-of-flight1"> 0.00s</span></p>
+            </div>
+
+            <div style="display: flex; flex-direction:row; justify-content: space-between;">
+                <p style="margin: 10px; width: 50%;">Current X-Velocity: <span style="color: aliceblue;" id="current-x-velocity1"> 0.00m/s</span></p>
+                <p style="margin: 10px; width: 50%;">Current Y-Velocity: <span style="color: aliceblue;" id="current-y-velocity1"> 0.00m/s</span></p>
+            </div>
+        </div>
+
+        <div id="Initals"> 
+            <p style="text-align: center; font-size: 30px; margin: 0px;"> <strong>Inital Values</strong></p>
+
+            <div style="display: flex; flex-direction: row; justify-content: space-between;"> <!-- display: flex; -->
+                <p style="margin: 5px; width: 50%;">Height:</p>
+                <p style="margin: 5px; width: 50%;">Angle:</p>
+            </div>
+
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <p style="margin: 5px; width: 50%;">Velocity X: <span style="color: aliceblue;" id="velocity-x"> 0.00 m/s </span></p>
+                <p style="margin: 5px; width: 50%;">Velocity Y: <span style="color: aliceblue;" id="velocity-y"> 0.00 m/s </span></p>
+            </div>
+        </div>
+
+        
+        <div id="ground">..</div>
+
+        <button id="start-btn">LAUNCH</button>
+
+        <div class="slider-container" style="position: fixed; top: 85%; left: 15%;">
+            <p style="text-align: center; font-size: 20px; margin: 5px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> <strong>Initial speed</strong> </p>
+            <p style="text-align: center; font-size: 15px; margin: 0px; font-weight: bold;" id = "Initial-speed-value"> 18</p>
+            <input type="range"  min="1" max="25", value="18" class="slider" id = "speed-slider">
+        </div>
+
+        <div class="slider-container" style="position: fixed; top: 85%; left: 35%;">
+            <p style="text-align: center; font-size: 20px; margin: 5px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> <strong>Angle</strong> </p>
+            <p style="text-align: center; font-size: 15px; margin: 0px; font-weight: bold;" id = "Initial-angle-value"> 45</p>
+            <input type="range"  min="25" max="90", value="45" class="slider" id = "angle-slider">
+        </div>
+
+
+        <script src = "Main.js"></script> 
+    </body>
+</html>
