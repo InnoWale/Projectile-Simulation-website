@@ -15,6 +15,8 @@ const AngleSlider = document.getElementById("angle-slider");
 
 const VelocityXValue = document.getElementById("velocity-x");
 const VelocityYValue = document.getElementById("velocity-y");
+const heightValue = document.getElementById("height-value");
+const angleValue = document.getElementById("angle-value");
 
 const PeakHeight = [document.getElementById("peak-height"), document.getElementById("peak-height1")]
 //const PeakHeight = document.getElementById("peak-height");
@@ -25,10 +27,20 @@ const CurrentXVelocity = [document.getElementById("current-x-velocity"), documen
 const CurrentYVelocity = [document.getElementById("current-y-velocity"), document.getElementById("current-y-velocity1")]
 //const CurrentYVelocity = document.getElementById("current-y-velocity");
 
+SpeedValue.textContent = SpeedSlider.value;
+
+var AngleInRadians = AngleSlider.value * Math.PI / 180;
+heightValue.textContent = `0.00 m`;
+angleValue.textContent = `${AngleSlider.value}°`;
+VelocityXValue.textContent = `${(parseFloat(SpeedSlider.value * Math.cos(AngleInRadians))).toFixed(2)} m/s`;
+VelocityYValue.textContent = `${(parseFloat(SpeedSlider.value * Math.sin(AngleInRadians))).toFixed(2)} m/s`;
+
 SpeedSlider.addEventListener("input", () => {
     SpeedValue.textContent = SpeedSlider.value;
 
     var AngleInRadians = AngleSlider.value * Math.PI / 180;
+    heightValue.textContent = "0m";
+    angleValue.textContent = AngleSlider.value;
     VelocityXValue.textContent = `${(parseFloat(SpeedSlider.value * Math.cos(AngleInRadians))).toFixed(2)} m/s`;
     VelocityYValue.textContent = `${(parseFloat(SpeedSlider.value * Math.sin(AngleInRadians))).toFixed(2)} m/s`;
 });
@@ -76,13 +88,15 @@ function CreateProjectile(){
         flightTime: 0,
         peakHeight: 0,
         AtPeak: false,
-        trails: []
+        trails: [],
+        place: no_Projectile,
     })
 
     if (!isSimulating) {
         isSimulating = true;
         requestAnimationFrame(SimulateProjectile)
     }
+    PeakHeight[no_Projectile].parentNode.parentNode.parentNode.style.opacity = "0.7";
     no_Projectile += 1
 }
 
@@ -108,7 +122,7 @@ function SimulateProjectile(currentTime){
         var rect = p.element.getBoundingClientRect()
 
         p.flightTime += deltaTime/1000;
-        TimeOfFlight[i].textContent = `${p.flightTime.toFixed(2)} seconds`;
+        TimeOfFlight[p.place].textContent = `${p.flightTime.toFixed(2)} seconds`;
 
         p.PosX += p.xVelocity * deltaTime/1000;
 
@@ -120,18 +134,18 @@ function SimulateProjectile(currentTime){
         // Calculate the peak height when the projectile reaches its maximum height
         if (p.AtPeak){
                 p.peakHeight = Math.pow(p.initialYVelocity, 2) / (2 * gravity);
-                PeakHeight[i].textContent = `${(p.peakHeight/PixelsPerMeter).toFixed(2)} m`;
+                PeakHeight[p.place].textContent = `${(p.peakHeight/PixelsPerMeter).toFixed(2)} m`;
 
                 console.log("peak")
         }else{
             if (p.yVelocity >= 0){
                 p.AtPeak = true;
             }
-            PeakHeight[i].textContent = `${(-p.PosY/PixelsPerMeter).toFixed(2)} m`;
+            PeakHeight[p.place].textContent = `${(-p.PosY/PixelsPerMeter).toFixed(2)} m`;
         }
 
-        CurrentXVelocity[i].textContent = `${(p.xVelocity/PixelsPerMeter).toFixed(2)} m/s`;
-        CurrentYVelocity[i].textContent = `${(-p.yVelocity/PixelsPerMeter).toFixed(2)} m/s`;
+        CurrentXVelocity[p.place].textContent = `${(p.xVelocity/PixelsPerMeter).toFixed(2)} m/s`;
+        CurrentYVelocity[p.place].textContent = `${(-p.yVelocity/PixelsPerMeter).toFixed(2)} m/s`;
 
         lastTime = currentTime;
 
@@ -152,11 +166,12 @@ function SimulateProjectile(currentTime){
 
         if (rect.bottom >= groundHeight) {
             p.element.remove();
+            PeakHeight[p.place].parentNode.parentNode.parentNode.style.opacity = "1";
             Current_Projectiles.splice(i, 1);
             no_Projectile -= 1 // Remove from array
 
             let formattedTime = (-p.initialYVelocity/gravity) * 2
-            TimeOfFlight[i].textContent = `${formattedTime.toFixed(2)} seconds`;
+            TimeOfFlight[p.place].textContent = `${formattedTime.toFixed(2)} seconds`;
         }
     }
 
